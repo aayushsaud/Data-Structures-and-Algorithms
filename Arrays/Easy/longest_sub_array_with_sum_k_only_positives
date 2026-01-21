@@ -1,0 +1,25 @@
+public class Solution {
+    public static int longestSubarrayWithSumK(int[] nums, long k) {
+        int size = 0;
+        int j = 0;
+        int sum = 0;
+        int count = 0;
+
+        for (int num : nums) {
+            sum = sum + num;
+            count += 1;
+
+            while (sum > k) {
+                sum = sum - nums[j];
+                count -= 1;
+                j++;
+            }
+
+            if (sum == k && size < count) {
+                size = count;
+            }
+        }
+
+        return size;
+    }
+}
